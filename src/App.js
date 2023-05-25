@@ -63,13 +63,13 @@ const App = () => {
 
   const Panel1 = () =>
     isEPSSDataLoaded && (
-      <div className="col-md-6 col-sm-12">
+      <div className="col-md-6 col-12">
         <GlobeComponent data={epss_data} globeImageUrl={globeImageURLs[1]} />
       </div>
     );
-  const Panel2 = () => <div className="col-md-6 col-sm-12">Panel 2</div>;
-  const Panel3 = () => <div className="col-md-6 col-sm-12">Panel 3</div>;
-  const Panel4 = () => <div className="col-md-6 col-sm-12">Panel 4</div>;
+  const Panel2 = () => <div className="col-md-6 col-12">Panel 2</div>;
+  const Panel3 = () => <div className="col-md-6 col-12">Panel 3</div>;
+  const Panel4 = () => <div className="col-md-6 col-12">Panel 4</div>;
 
   return (
     <div>
