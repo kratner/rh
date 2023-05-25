@@ -11,7 +11,7 @@
       background-color: $header_background;
   
       .logo {
-        // Add any additional styling for the logo container
+        width: 18em;
       }
   
       .navigation {
@@ -56,6 +56,9 @@
             margin: .5em;
           }
         }
+      }
+      .chart-container {
+        height: 300px;
       }
     }
   

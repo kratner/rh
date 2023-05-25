@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import GlobeComponent from "./components/Globe";
+import BarChart from "./components/d3/BarChart";
+import ColumnChart from "./components/d3/ColumnChart";
 import HeadContent from "./components/HeadContent";
-import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
 import { getRandomCoordinate } from "./utils/utils";
 import "./styles/index.scss";
@@ -22,6 +23,7 @@ const globeImageURLs = [
 // const EPSS_API_URL_STEM = "https://api.first.org/data/v1/epss";
 const App = () => {
   const [epss_data, setEPSSData] = useState(null);
+  const [top25_epss_data, setFilteredEPSSData] = useState(null);
 
   const [isEPSSDataLoaded, setEPSSIsDataLoaded] = useState(false);
 
@@ -31,7 +33,16 @@ const App = () => {
       const { lat, lng } = getRandomCoordinate();
       return { cve, epss, percentile, date, lat, lng };
     });
+    // Sort the data by percentile in descending order
+    const sortedData = [...parsedData].sort(
+      (a, b) => b.percentile - a.percentile
+    );
+
+    // Get the top 25 values based on percentile
+    const top25Data = sortedData.slice(0, 25);
+
     setEPSSData(parsedData);
+    setFilteredEPSSData(top25Data); // Set the filtered data
     setEPSSIsDataLoaded(true);
   };
 
@@ -42,35 +53,37 @@ const App = () => {
       .then((data) => handleEPSSDataLoaded(data));
   }, []);
 
-  const layoutComponents = [
-    // {
-    //   component: isEPSSDataLoaded && (
-    //     <GlobeComponent data={epss_data} globeImageUrl={globeImageURLs[1]} />
-    //   ),
-    //   width: 6,
-    // },
-    { component: <div>Component 1</div>, width: 6 },
-    { component: <div>Component 2</div>, width: 6 },
-  ];
-
-  // const contentBlocks = [<MultiColumnLayout components={layoutComponents} />];
-
-  const contentBlocks = [
-    isEPSSDataLoaded && (
-      <GlobeComponent data={epss_data} globeImageUrl={globeImageURLs[1]} />
-    ),
-  ];
+  // const Panel1 = () =>
+  //   isEPSSDataLoaded && (
+  //     <div className="col-md-6 col-12">
+  //       <GlobeComponent data={epss_data} globeImageUrl={globeImageURLs[1]} />
+  //     </div>
+  //   );
 
   const Panel1 = () =>
     isEPSSDataLoaded && (
-      <div className="col-md-6 col-12">
-        <GlobeComponent data={epss_data} globeImageUrl={globeImageURLs[1]} />
+      <div className="col-md-6 col-12 chart-container">
+        <ColumnChart data={top25_epss_data} />
       </div>
     );
-  const Panel2 = () => <div className="col-md-6 col-12">Panel 2</div>;
-  const Panel3 = () => <div className="col-md-6 col-12">Panel 3</div>;
-  const Panel4 = () => <div className="col-md-6 col-12">Panel 4</div>;
-
+  const Panel2 = () =>
+    isEPSSDataLoaded && (
+      <div className="col-md-6 col-12 chart-container">
+        <ColumnChart data={top25_epss_data} />
+      </div>
+    );
+  const Panel3 = () =>
+    isEPSSDataLoaded && (
+      <div className="col-md-6 col-12 chart-container">
+        <ColumnChart data={top25_epss_data} />
+      </div>
+    );
+  const Panel4 = () =>
+    isEPSSDataLoaded && (
+      <div className="col-md-6 col-12 chart-container">
+        <ColumnChart data={top25_epss_data} />
+      </div>
+    );
   return (
     <div>
       <HeadContent

@@ -1,17 +1,17 @@
 import React, { ReactElement, ReactNode } from "react";
 import LogoContainer from "./LogoContainer";
 
-interface DashboardProps {
+interface DashboardPanelComponents {
   children: ReactNode;
 }
 
-const Dashboard = ({ children }: DashboardProps): ReactElement => {
+const Dashboard = ({ children }: DashboardPanelComponents): ReactElement => {
   return (
     <div className="dashboard">
       {/* Header */}
       <header className="header">
-        <div className="logo">
-          <LogoContainer src="/rh/risk_horizon_logo.svg" style={{ width: "18em" }} />
+        <div>
+          <LogoContainer alt="Risk Horizon" className="logo" src="/rh/risk_horizon_logo.svg" />
         </div>
         <nav className="navigation">
           <ul>
