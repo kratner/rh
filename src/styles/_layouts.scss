@@ -1,0 +1,23 @@
+.content-block-container {
+    // background: #ccc;
+    width: 100%;
+    }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.child-container {
+  background-color: #f2f2f237;
+  padding: .1em;
+  width: 100%;
+  // border-radius: 5px;
+}
+
+@media (min-width: 768px) { // Adjust the breakpoint value to target the desired screen width for desktop
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr); // Display three columns on desktop
+  }
+}

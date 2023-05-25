@@ -1,0 +1,57 @@
+{
+  "name": "rh",
+  "homepage": "https://kratner.github.io/rh",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "bootstrap": "^5.2.3",
+    "d3": "^7.8.4",
+    "d3-scale": "^4.0.2",
+    "globe.gl": "^2.28.4",
+    "react": "^18.2.0",
+    "react-content-loader": "^6.2.1",
+    "react-dom": "^18.2.0",
+    "react-globe.gl": "^2.24.1",
+    "react-helmet": "^6.1.0",
+    "react-scripts": "5.0.1",
+    "react-sizeme": "^3.0.2",
+    "sass": "^1.62.1",
+    "styled-components": "^6.0.0-rc.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
+}

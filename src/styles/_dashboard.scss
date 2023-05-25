@@ -1,0 +1,93 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: $header_background;
+  
+      .logo {
+        // Add any additional styling for the logo container
+      }
+  
+      .navigation {
+        ul {
+          display: flex;
+          list-style: none;
+          padding: 0;
+          margin-bottom: 0;
+  
+          li {
+            margin-left: 1rem;
+  
+            a {
+              text-decoration: none;
+              color: $text_color;
+              &:hover {
+                color: $link_hover_color;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .dashboard-panels {
+      // Add any additional styling for the dashboard panels container
+      padding: 1rem;
+  
+      .row {
+        display: flex;
+  
+        .col-md-6 {
+          flex: 1;
+          padding: 0 0.5rem;
+  
+          .panel {
+            // Add any additional styling for the panels
+            padding: 1rem;
+            background-color: $panel_background;
+            border: $panel_border;
+            margin: .5em;
+          }
+        }
+      }
+    }
+  
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: $footer_background;
+      color: $text_color;
+  
+      .footer-links {
+        ul {
+          display: flex;
+          list-style: none;
+          padding: 0;
+          margin-bottom: 0;
+  
+          li {
+            margin-left: 1rem;
+  
+            a {
+              text-decoration: none;
+              color: $text_color;
+              &:hover {
+                color: $link_hover_color;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
