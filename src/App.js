@@ -20,7 +20,6 @@ const globeImageURLs = [
 // const CVE_API_URL_STEM = "https://services.nvd.nist.gov/rest/json/cves/2.0";
 
 // const EPSS_API_URL_STEM = "https://api.first.org/data/v1/epss";
-
 const App = () => {
   const [epss_data, setEPSSData] = useState(null);
 
@@ -62,6 +61,16 @@ const App = () => {
     ),
   ];
 
+  const Panel1 = () =>
+    isEPSSDataLoaded && (
+      <div className="col-md-6 col-sm-12">
+        <GlobeComponent data={epss_data} globeImageUrl={globeImageURLs[1]} />
+      </div>
+    );
+  const Panel2 = () => <div className="col-md-6 col-sm-12">Panel 2</div>;
+  const Panel3 = () => <div className="col-md-6 col-sm-12">Panel 3</div>;
+  const Panel4 = () => <div className="col-md-6 col-sm-12">Panel 4</div>;
+
   return (
     <div>
       <HeadContent
@@ -77,7 +86,12 @@ const App = () => {
         contentContainerClassName="content-block-container"
         // footerText="5/15/2023"
       /> */}
-      <Dashboard />
+      <Dashboard>
+        <Panel1 />
+        <Panel2 />
+        <Panel3 />
+        <Panel4 />
+      </Dashboard>
       {/* <Spheres data={epss_data} /> */}
 
       {/* <h3>National Institute of Standards and Technology (NIST)</h3>
