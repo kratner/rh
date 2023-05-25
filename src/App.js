@@ -39,10 +39,10 @@ const App = () => {
     );
 
     // Get the top 25 values based on percentile
-    const top25Data = sortedData.slice(0, 25);
+    const topData = (amt) => sortedData.slice(0, amt);
 
     setEPSSData(parsedData);
-    setFilteredEPSSData(top25Data); // Set the filtered data
+    setFilteredEPSSData(topData(10)); // Set the filtered data
     setEPSSIsDataLoaded(true);
   };
 
