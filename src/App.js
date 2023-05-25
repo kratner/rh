@@ -26,7 +26,7 @@ const App = () => {
   const [top25_epss_data, setFilteredEPSSData] = useState(null);
 
   const [isEPSSDataLoaded, setEPSSIsDataLoaded] = useState(false);
-
+  const chartPadding = 100;
   const handleEPSSDataLoaded = (data) => {
     const parsedData = data.data.map((item) => {
       const { cve, epss, percentile, date } = item;
@@ -63,25 +63,25 @@ const App = () => {
   const Panel1 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} />
+        <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel2 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} />
+        <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel3 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} />
+        <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel4 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} />
+        <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
   return (

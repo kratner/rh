@@ -8,9 +8,10 @@ interface DataItem {
 
 interface ColumnChartProps {
   data: DataItem[];
+  padding: number;
 }
 
-const ColumnChart: React.FC<ColumnChartProps> = ({ data }) => {
+const ColumnChart: React.FC<ColumnChartProps> = ({ data, padding }) => {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,21 +38,23 @@ const ColumnChart: React.FC<ColumnChartProps> = ({ data }) => {
 
     // Get container dimensions
     const containerWidth = chartRef.current!.clientWidth;
-    const containerHeight = chartRef.current!.clientHeight;
+    // const containerHeight = chartRef.current!.clientHeight;
+  // Calculate the height based on the width
+    const height = (containerWidth * 9) / 16 - padding;
 
     // Set up chart margins
     const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
     // Calculate chart dimensions based on container size and margins
     const width = containerWidth - margin.left - margin.right;
-    const height = containerHeight - margin.top - margin.bottom;
+    // const height = containerHeight - margin.top - margin.bottom;
 
     // Create the SVG element
     const svg = d3
       .select(chartRef.current!)
       .append('svg')
       .attr('width', containerWidth)
-      .attr('height', containerHeight);
+      .attr('height', height);
 
     // Create the chart group
     const chart = svg
