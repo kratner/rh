@@ -11,7 +11,7 @@ const Dashboard = ({ children }: DashboardPanelComponents): ReactElement => {
       {/* Header */}
       <header className="header">
         <div>
-          <LogoContainer alt="Risk Horizon" className="logo" src="/rh/risk_horizon_logo.svg" />
+          <LogoContainer alt="Risk Horizon" className="logo" src="/rh/assets/risk_horizon_logo.svg" />
         </div>
         <nav className="navigation">
           <ul>

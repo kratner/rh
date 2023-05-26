@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GlobeComponent from "./components/Globe";
 import BarChart from "./components/d3/BarChart";
+import RadarComponent from "./components/d3/RadarComponent";
 import ColumnChart from "./components/d3/ColumnChart";
 import HeadContent from "./components/HeadContent";
 import Dashboard from "./components/Dashboard";
@@ -66,12 +67,11 @@ const App = () => {
         <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
-  const Panel2 = () =>
-    isEPSSDataLoaded && (
-      <div className="col-md-6 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} padding={chartPadding} />
-      </div>
-    );
+  const Panel2 = () => (
+    <div className="col-md-6 col-12 chart-container">
+      <RadarComponent padding={chartPadding} />
+    </div>
+  );
   const Panel3 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
