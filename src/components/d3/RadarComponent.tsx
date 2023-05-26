@@ -105,13 +105,15 @@ const RadarComponent: React.FC<RadarChartProps> = ({ padding }) => {
           const distanceToLine = Math.abs(d.angle * radius - lineLength * 0.5);
 
           if (distanceToLine < 5) {
-            bogey.transition().duration(200).style('opacity', 1);
-          } else {
-            bogey.transition().duration(200).style('opacity', 0);
+            bogey
+              .transition()
+              .duration(200)
+              .style('opacity', 1)
+              .transition()
+              .duration(1000)
+              .style('opacity', 0);
           }
         });
-
-        requestAnimationFrame(animateBogeys);
       };
 
       animateRotation();

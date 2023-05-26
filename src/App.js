@@ -61,17 +61,17 @@ const App = () => {
   //     </div>
   //   );
 
-  const Panel1 = () =>
+  const Panel1 = () => (
+    <div className="col-md-6 col-12 chart-container">
+      <RadarComponent padding={chartPadding} />
+    </div>
+  );
+  const Panel2 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
         <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
-  const Panel2 = () => (
-    <div className="col-md-6 col-12 chart-container">
-      <RadarComponent padding={chartPadding} />
-    </div>
-  );
   const Panel3 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
