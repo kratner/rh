@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 
 interface RadarChartProps {
   padding: number;
+  numBogeys: number;
 }
 
 interface Bogey {
@@ -10,7 +11,7 @@ interface Bogey {
   radius: number;
 }
 
-const RadarComponent: React.FC<RadarChartProps> = ({ padding }) => {
+const RadarComponent: React.FC<RadarChartProps> = ({ padding, numBogeys }) => {
   const radarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -61,7 +62,6 @@ const RadarComponent: React.FC<RadarChartProps> = ({ padding }) => {
         .attr('transform', 'rotate(-90)');
 
       // Create the random "bogeys"
-      const numBogeys = 10;
       const bogeysData: Bogey[] = Array.from({ length: numBogeys }, () => ({
         angle: Math.random() * 2 * Math.PI,
         radius: Math.random() * radius * 0.9,
@@ -73,8 +73,8 @@ const RadarComponent: React.FC<RadarChartProps> = ({ padding }) => {
         .enter()
         .append('circle')
         .attr('class', 'bogey')
-        .attr('cx', (d: Bogey) => d.radius * Math.sin(d.angle))
-        .attr('cy', (d: Bogey) => -d.radius * Math.cos(d.angle))
+        .attr('cx', 0)
+        .attr('cy', 0)
         .attr('r', 3)
         .attr('fill', 'blue')
         .style('opacity', 0);
@@ -95,26 +95,42 @@ const RadarComponent: React.FC<RadarChartProps> = ({ padding }) => {
           .on('end', animateRotation);
       };
 
+      const pointRadialDistance = (angle: number, radius: number) => {
+        return Math.sqrt(radius * radius - radius * radius * Math.cos(angle));
+      };
+      
+
       // Animate the bogeys
+      
       const animateBogeys = () => {
         const lineNode = line.node() as SVGLineElement;
         const lineLength = lineNode.getTotalLength();
-
+      
         bogeys.each(function (d: Bogey) {
           const bogey = d3.select(this);
-          const distanceToLine = Math.abs(d.angle * radius - lineLength * 0.5);
-
+      
+          const angle = d.angle + Math.PI / 2; // Adjust angle to match line rotation
+      
+          const x = Math.cos(angle) * d.radius;
+          const y = -Math.sin(angle) * d.radius;
+      
+          const distanceToLine = Math.abs(lineLength * 0.5 - pointRadialDistance(angle, d.radius));
+      
           if (distanceToLine < 5) {
             bogey
               .transition()
-              .duration(200)
+              .duration(500)
               .style('opacity', 1)
+              .attr('cx', x) // Update cx attribute to the calculated x coordinate
+              .attr('cy', y) // Update cy attribute to the calculated y coordinate
               .transition()
               .duration(1000)
               .style('opacity', 0);
           }
         });
       };
+      
+      
 
       animateRotation();
     };
@@ -131,7 +147,7 @@ const RadarComponent: React.FC<RadarChartProps> = ({ padding }) => {
     return () => {
       window.removeEventListener('resize', resizeHandler);
     };
-  }, [padding]);
+  }, [padding, numBogeys]);
 
   return <div ref={radarRef} style={{ width: '100%', height: '0', paddingBottom: '56.25%', position: 'relative' }} />;
 };

@@ -3,9 +3,10 @@ import LogoContainer from "./LogoContainer";
 
 interface DashboardPanelComponents {
   children: ReactNode;
+  footerText: string;
 }
 
-const Dashboard = ({ children }: DashboardPanelComponents): ReactElement => {
+const Dashboard = ({ children, footerText }: DashboardPanelComponents): ReactElement => {
   return (
     <div className="dashboard">
       {/* Header */}
@@ -32,7 +33,7 @@ const Dashboard = ({ children }: DashboardPanelComponents): ReactElement => {
       {/* Footer */}
       <footer className="footer">
         <div className="copyright">
-          &copy; {new Date().getFullYear()} Risk Horizon. All rights reserved.
+          {footerText}
         </div>
         <nav className="footer-links">
           <ul>

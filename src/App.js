@@ -63,7 +63,7 @@ const App = () => {
 
   const Panel1 = () => (
     <div className="col-md-6 col-12 chart-container">
-      <RadarComponent padding={chartPadding} />
+      <RadarComponent padding={chartPadding} numBogeys={12} />
     </div>
   );
   const Panel2 = () =>
@@ -84,6 +84,8 @@ const App = () => {
         <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
+
+  const footerText = `\u00A9 ${new Date().getFullYear()} RiskHorizon. All rights reserved.`;
   return (
     <div>
       <HeadContent
@@ -99,7 +101,8 @@ const App = () => {
         contentContainerClassName="content-block-container"
         // footerText="5/15/2023"
       /> */}
-      <Dashboard>
+
+      <Dashboard footerText={footerText}>
         <Panel1 />
         <Panel2 />
         <Panel3 />
