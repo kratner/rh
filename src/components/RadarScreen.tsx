@@ -38,9 +38,9 @@ const RadarScreen: React.FC<RadarScreenProps> = ({
 
   const renderBogeys = () => {
     return bogeys.map((bogey) => {
-      const isVisible = bogey.x <= 0;
+      const isVisible = bogey.x >= 200;
       const style = {
-        opacity: isVisible ? 0 : 1,
+        opacity: isVisible ? 1 : 0,
         transition: 'opacity 0.5s ease',
       };
 
@@ -68,12 +68,12 @@ const RadarScreen: React.FC<RadarScreenProps> = ({
       style={{ width: '100%', height: '100%' }}
     >
       <circle cx="200" cy="200" r="180" fill="transparent" stroke={circleColor} strokeWidth="2" />
-      <g transform="rotate(0 200 200)">
+      <g transform={`rotate(90 200 200)`}>
         <line
           x1="200"
-          y1="20"
+          y1="10"
           x2="200"
-          y2="380"
+          y2="190"
           stroke={lineColor}
           strokeWidth="2"
           style={{

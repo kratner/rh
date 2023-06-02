@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GlobeComponent from "./components/Globe";
 import BarChart from "./components/d3/BarChart";
-import RadarScreen from "./components/RadarScreen";
-import SVGRadarComponent from "./components/SVGRadarComponent";
+import RadarScreen from "./components/webgl/RadarScreen";
 import ColumnChart from "./components/d3/ColumnChart";
 import HeadContent from "./components/HeadContent";
 import Dashboard from "./components/Dashboard";
@@ -28,13 +27,8 @@ const App = () => {
   const [top25_epss_data, setFilteredEPSSData] = useState(null);
 
   const [isEPSSDataLoaded, setEPSSIsDataLoaded] = useState(false);
-  const chartPadding = 100;
 
-  const bogeys = [
-    { id: 1, x: 100, y: 150, label: "Bogey 1", color: "red" },
-    { id: 2, x: 200, y: 250, label: "Bogey 2", color: "blue" },
-    { id: 3, x: 300, y: 350, label: "Bogey 3", color: "green" },
-  ];
+  const chartPadding = 100;
 
   const handleEPSSDataLoaded = (data) => {
     const parsedData = data.data.map((item) => {
@@ -46,7 +40,6 @@ const App = () => {
     const sortedData = [...parsedData].sort(
       (a, b) => b.percentile - a.percentile
     );
-
     // Get the top 25 values based on percentile
     const topData = (amt) => sortedData.slice(0, amt);
 
@@ -70,29 +63,35 @@ const App = () => {
   //   );
 
   const Panel1 = () => (
-    <div className="col-md-6 col-12 chart-container">
-      {/* <RadarComponent padding={chartPadding} numBogeys={12} /> */}
-      <RadarScreen
-        circleColor="white"
-        lineColor="white"
-        bogeyData={bogeys}
-        rotationSpeed={100}
-      />
+    <div className="col-md-4 col-12 chart-container">
+      <ColumnChart data={top25_epss_data} padding={chartPadding} />
     </div>
   );
   const Panel2 = () =>
     isEPSSDataLoaded && (
-      <div className="col-md-6 col-12 chart-container">
+      <div className="col-md-4 col-12 chart-container">
         <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel3 = () =>
     isEPSSDataLoaded && (
-      <div className="col-md-6 col-12 chart-container">
+      <div className="col-md-4 col-12 chart-container">
         <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel4 = () =>
+    isEPSSDataLoaded && (
+      <div className="col-md-6 col-12 chart-container">
+        <ColumnChart data={top25_epss_data} padding={chartPadding} />
+      </div>
+    );
+  const Panel5 = () =>
+    isEPSSDataLoaded && (
+      <div className="col-md-6 col-12 chart-container">
+        <ColumnChart data={top25_epss_data} padding={chartPadding} />
+      </div>
+    );
+  const Panel6 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
         <ColumnChart data={top25_epss_data} padding={chartPadding} />
@@ -121,6 +120,8 @@ const App = () => {
         <Panel2 />
         <Panel3 />
         <Panel4 />
+        <Panel5 />
+        <Panel6 />
       </Dashboard>
       {/* <Spheres data={epss_data} /> */}
 

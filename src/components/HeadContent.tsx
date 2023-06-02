@@ -1,7 +1,19 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-const HeadContent = ({ title, description, keywords, favicon }) => {
+interface HeadContentProps {
+  title: string;
+  description: string;
+  keywords: string;
+  favicon: string;
+}
+
+const HeadContent: React.FC<HeadContentProps> = ({
+  title,
+  description,
+  keywords,
+  favicon,
+}) => {
   return (
     <Helmet>
       <title>{title}</title>
