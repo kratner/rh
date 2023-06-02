@@ -1,6 +1,10 @@
 .chart-container {
     .bar {
-        fill: #20999d;
+        cursor:pointer;
+        // fill: #20999d;
+        &:hover{
+            fill: yellow;
+        }
     }
     text {
         color: $text_color;

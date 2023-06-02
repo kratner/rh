@@ -24,7 +24,8 @@ const globeImageURLs = [
 // const EPSS_API_URL_STEM = "https://api.first.org/data/v1/epss";
 const App = () => {
   const [epss_data, setEPSSData] = useState(null);
-  const [top25_epss_data, setFilteredEPSSData] = useState(null);
+  const [top25_epss_data, setTop25EPSSData] = useState(null);
+  const [top10_epss_data, setTop10EPSData] = useState(null);
 
   const [isEPSSDataLoaded, setEPSSIsDataLoaded] = useState(false);
 
@@ -44,7 +45,8 @@ const App = () => {
     const topData = (amt) => sortedData.slice(0, amt);
 
     setEPSSData(parsedData);
-    setFilteredEPSSData(topData(10)); // Set the filtered data
+    setTop25EPSSData(topData(25)); // Set the filtered data
+    setTop10EPSData(topData(10));
     setEPSSIsDataLoaded(true);
   };
 
@@ -62,21 +64,30 @@ const App = () => {
   //     </div>
   //   );
 
+  const handlePanel1BarClick = (data) => {
+    debugger;
+  };
+
   const Panel1 = () => (
     <div className="col-md-4 col-12 chart-container">
-      <ColumnChart data={top25_epss_data} padding={chartPadding} />
+      <ColumnChart
+        data={top10_epss_data}
+        padding={chartPadding}
+        onBarClick={handlePanel1BarClick}
+        barFillColor="green"
+      />
     </div>
   );
   const Panel2 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-4 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} padding={chartPadding} />
+        <ColumnChart data={top10_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel3 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-4 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} padding={chartPadding} />
+        <BarChart data={top10_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel4 = () =>
@@ -88,13 +99,7 @@ const App = () => {
   const Panel5 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} padding={chartPadding} />
-      </div>
-    );
-  const Panel6 = () =>
-    isEPSSDataLoaded && (
-      <div className="col-md-6 col-12 chart-container">
-        <ColumnChart data={top25_epss_data} padding={chartPadding} />
+        <ColumnChart data={top10_epss_data} padding={chartPadding} />
       </div>
     );
 
@@ -121,7 +126,6 @@ const App = () => {
         <Panel3 />
         <Panel4 />
         <Panel5 />
-        <Panel6 />
       </Dashboard>
       {/* <Spheres data={epss_data} /> */}
 
