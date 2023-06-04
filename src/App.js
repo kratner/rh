@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GlobeComponent from "./components/Globe";
+import ChartHeading from "./components/ChartHeading";
 import BarChart from "./components/d3/BarChart";
 import RadarScreen from "./components/webgl/RadarScreen";
 import ColumnChart from "./components/d3/ColumnChart";
@@ -65,41 +66,45 @@ const App = () => {
   //   );
 
   const handlePanel1ColumnClick = (data) => {
-    debugger;
+    // debugger;
   };
 
   const handlePanel1ColumnMouseOver = (data) => {
-    debugger;
+    // debugger;
   };
 
   const handlePanel3BarClick = (data) => {
-    debugger;
+    // debugger;
   };
 
   const handlePanel3BarMouseOver = (data) => {
-    debugger;
+    // debugger;
   };
 
-  const Panel1 = () => (
-    <div className="col-md-4 col-12 chart-container">
-      <ColumnChart
-        data={top10_epss_data}
-        padding={chartPadding}
-        onColumnClick={handlePanel1ColumnClick}
-        onColumnMouseOver={handlePanel1ColumnMouseOver}
-        barFillColor="green"
-      />
-    </div>
-  );
+  const Panel1 = () =>
+    isEPSSDataLoaded && (
+      <div className="col-md-4 col-12 chart-container">
+        <ChartHeading title="EPSS Top 10" titleClassName="chart-title" />
+        <ColumnChart
+          data={top10_epss_data}
+          padding={chartPadding}
+          onColumnClick={handlePanel1ColumnClick}
+          onColumnMouseOver={handlePanel1ColumnMouseOver}
+          barFillColor="green"
+        />
+      </div>
+    );
   const Panel2 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-4 col-12 chart-container">
+        <ChartHeading title="EPSS Top 10" titleClassName="chart-title" />
         <ColumnChart data={top10_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel3 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-4 col-12 chart-container">
+        <ChartHeading title="EPSS Top 10" titleClassName="chart-title" />
         <BarChart
           data={top10_epss_data}
           padding={chartPadding}
@@ -111,12 +116,14 @@ const App = () => {
   const Panel4 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
+        <ChartHeading title="EPSS Top 25" titleClassName="chart-title" />
         <ColumnChart data={top25_epss_data} padding={chartPadding} />
       </div>
     );
   const Panel5 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
+        <ChartHeading title="EPSS Top 10" titleClassName="chart-title" />
         <ColumnChart data={top10_epss_data} padding={chartPadding} />
       </div>
     );

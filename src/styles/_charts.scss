@@ -1,12 +1,26 @@
 .chart-container {
+    .chart-title {
+        @include font($size: 1em, $weight: 800);
+    }
     .bar {
-        cursor:pointer;
+        cursor: pointer;
         // fill: #20999d;
         &:hover{
             fill: yellow;
         }
     }
-    text {
-        color: $text_color;
+    .yAxis {
+        .tick {
+            text {
+                @include font($size: 1em)
+            }
+        }
+    }
+    .xAxis {
+        .tick {
+            text {
+                @include font($size: 1em)
+            }
+        }
     }
 }

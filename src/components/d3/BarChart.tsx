@@ -59,8 +59,8 @@ const BarChart: React.FC<BarChartProps> = ({ data, padding, onBarClick, onBarMou
     const yAxis = d3.axisLeft(yScale);
 
     // Append x and y axes to the chart
-    chart.append('g').call(xAxis);
-    chart.append('g').call(yAxis);
+    chart.append('g').attr('class', 'Axis').call(xAxis);
+    chart.append('g').attr('class', 'yAxis').call(yAxis);
 
     // Create the bars
     chart
