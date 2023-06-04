@@ -64,7 +64,19 @@ const App = () => {
   //     </div>
   //   );
 
-  const handlePanel1BarClick = (data) => {
+  const handlePanel1ColumnClick = (data) => {
+    debugger;
+  };
+
+  const handlePanel1ColumnMouseOver = (data) => {
+    debugger;
+  };
+
+  const handlePanel3BarClick = (data) => {
+    debugger;
+  };
+
+  const handlePanel3BarMouseOver = (data) => {
     debugger;
   };
 
@@ -73,7 +85,8 @@ const App = () => {
       <ColumnChart
         data={top10_epss_data}
         padding={chartPadding}
-        onBarClick={handlePanel1BarClick}
+        onColumnClick={handlePanel1ColumnClick}
+        onColumnMouseOver={handlePanel1ColumnMouseOver}
         barFillColor="green"
       />
     </div>
@@ -87,7 +100,12 @@ const App = () => {
   const Panel3 = () =>
     isEPSSDataLoaded && (
       <div className="col-md-4 col-12 chart-container">
-        <BarChart data={top10_epss_data} padding={chartPadding} />
+        <BarChart
+          data={top10_epss_data}
+          padding={chartPadding}
+          onBarClick={handlePanel3BarClick}
+          onBarMouseOver={handlePanel3BarMouseOver}
+        />
       </div>
     );
   const Panel4 = () =>

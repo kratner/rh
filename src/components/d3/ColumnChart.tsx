@@ -10,16 +10,16 @@ interface ColumnChartProps {
   data: DataItem[];
   padding: number;
   barFillColor?: string;
-  onBarClick?: (cve: object) => void;
-  onBarMouseOver?: (cve: string) => void;
+  onColumnClick?: (cve: object) => void;
+  onColumnMouseOver?: (cve: object) => void;
 }
 
 const ColumnChart: React.FC<ColumnChartProps> = ({
   data,
   padding,
   barFillColor = 'steelblue',
-  onBarClick,
-  onBarMouseOver,
+  onColumnClick,
+  onColumnMouseOver,
 }) => {
   const chartRef = useRef<HTMLDivElement>(null);
 
@@ -90,8 +90,8 @@ const ColumnChart: React.FC<ColumnChartProps> = ({
         .attr('width', xScale.bandwidth())
         .attr('height', (d) => height - (yScale(parseFloat(d.percentile)) as number))
         .attr('fill', barFillColor)
-        .on('click', onBarClick ? ((event, d) => onBarClick(d)) : () => {}) // Empty arrow function if no event handler
-        .on('mouseover', onBarMouseOver ? ((event, d) => onBarMouseOver(d.cve)) : () => {}) // Empty arrow function if no event handler
+        .on('click', onColumnClick ? ((event, d) => onColumnClick(d)) : () => {}) // Empty arrow function if no event handler
+        .on('mouseover', onColumnMouseOver ? ((event, d) => onColumnMouseOver(d)) : () => {}) // Empty arrow function if no event handler
         .on('mouseleave', function () {
           d3.select(this).attr('fill', barFillColor);
         });
@@ -100,7 +100,7 @@ const ColumnChart: React.FC<ColumnChartProps> = ({
     if (data) {
       drawChart();
     }
-  }, [data, onBarClick, onBarMouseOver, barFillColor]);
+  }, [data, onColumnClick, onColumnMouseOver, barFillColor]);
 
   return <div ref={chartRef} style={{ width: '100%', height: '100%' }} />;
 };

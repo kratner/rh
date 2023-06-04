@@ -6,31 +6,15 @@ interface DataItem {
   percentile: string;
 }
 
-interface ColumnChartProps {
+interface BarChartProps {
   data: DataItem[];
   padding: number;
+  onBarClick?: (cve: object) => void;
+  onBarMouseOver?: (cve: object) => void;
 }
 
-const ColumnChart: React.FC<ColumnChartProps> = ({ data, padding }) => {
+const BarChart: React.FC<BarChartProps> = ({ data, padding, onBarClick, onBarMouseOver }) => {
   const chartRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (data) {
-      drawChart();
-    }
-  }, [data]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      drawChart();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const drawChart = () => {
     // Clear previous chart
@@ -75,10 +59,7 @@ const ColumnChart: React.FC<ColumnChartProps> = ({ data, padding }) => {
     const yAxis = d3.axisLeft(yScale);
 
     // Append x and y axes to the chart
-    chart
-      .append('g')
-      .call(xAxis);
-
+    chart.append('g').call(xAxis);
     chart.append('g').call(yAxis);
 
     // Create the bars
@@ -92,10 +73,38 @@ const ColumnChart: React.FC<ColumnChartProps> = ({ data, padding }) => {
       .attr('y', (d) => yScale(d.cve) as number)
       .attr('width', (d) => xScale(parseFloat(d.percentile)) as number)
       .attr('height', yScale.bandwidth())
-      .attr('fill', 'steelblue');
+      .attr('fill', 'steelblue')
+      .on('click', (event, d) => {
+        if (onBarClick) {
+          onBarClick(d);
+        }
+      })
+      .on('mouseover', (event, d) => {
+        if (onBarMouseOver) {
+          onBarMouseOver(d);
+        }
+      });
   };
+
+  useEffect(() => {
+    if (data) {
+      drawChart();
+    }
+  }, [data, padding, onBarClick, onBarMouseOver]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      drawChart();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return <div ref={chartRef} style={{ width: '100%', height: '100%' }} />;
 };
 
-export default ColumnChart;
+export default BarChart;
