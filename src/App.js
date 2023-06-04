@@ -36,10 +36,17 @@ const App = () => {
     const parsedData = data.data.map((item) => {
       const { cve, epss, percentile, date } = item;
       const { lat, lng } = getRandomCoordinate();
+      // return { cve, epss, percentile, date, lat, lng };
       return { cve, epss, percentile, date, lat, lng };
     });
+    const transformedData = parsedData.map((item) => {
+      return {
+        ...item,
+        cve: item.cve.slice(-5),
+      };
+    });
     // Sort the data by percentile in descending order
-    const sortedData = [...parsedData].sort(
+    const sortedData = [...transformedData].sort(
       (a, b) => b.percentile - a.percentile
     );
     // Get the top 25 values based on percentile
@@ -90,7 +97,7 @@ const App = () => {
           padding={chartPadding}
           onColumnClick={handlePanel1ColumnClick}
           onColumnMouseOver={handlePanel1ColumnMouseOver}
-          barFillColor="green"
+          // barFillColor="green"
         />
       </div>
     );
