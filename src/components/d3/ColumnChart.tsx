@@ -121,7 +121,7 @@ const ColumnChart: React.FC<ColumnChartProps> = ({
     };
   }, []);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '100%' }} />;
+  return <div className='bar-chart' ref={chartRef} style={{ width: '100%', height: '100%' }} />;
 };
 
 export default ColumnChart;

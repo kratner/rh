@@ -1,10 +1,12 @@
 .chart-container {
+    height: 330px;
+    margin-bottom: 40px;
     .chart-title {
         @include font($size: 1em, $weight: 800);
     }
     .bar {
         cursor: pointer;
-        fill: #861906;
+        fill: rgb(196, 63, 15);
         &:hover{
             fill: yellow;
         }
@@ -24,3 +26,4 @@
         }
     }
 }
+

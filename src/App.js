@@ -26,7 +26,8 @@ const globeImageURLs = [
 const App = () => {
   const [epss_data, setEPSSData] = useState(null);
   const [top25_epss_data, setTop25EPSSData] = useState(null);
-  const [top10_epss_data, setTop10EPSData] = useState(null);
+  const [top10_epss_data, setTop10EPSSData] = useState(null);
+  const [top15_epss_data, setTop15EPSSData] = useState(null);
 
   const [isEPSSDataLoaded, setEPSSIsDataLoaded] = useState(false);
 
@@ -54,7 +55,8 @@ const App = () => {
 
     setEPSSData(parsedData);
     setTop25EPSSData(topData(25)); // Set the filtered data
-    setTop10EPSData(topData(10));
+    setTop10EPSSData(topData(10));
+    setTop15EPSSData(topData(15));
     setEPSSIsDataLoaded(true);
   };
 
@@ -124,7 +126,12 @@ const App = () => {
     isEPSSDataLoaded && (
       <div className="col-md-6 col-12 chart-container">
         <ChartHeading title="EPSS Top 25" titleClassName="chart-title" />
-        <ColumnChart data={top25_epss_data} padding={chartPadding} />
+        <BarChart
+          data={top10_epss_data}
+          padding={chartPadding}
+          onBarClick={handlePanel3BarClick}
+          onBarMouseOver={handlePanel3BarMouseOver}
+        />
       </div>
     );
   const Panel5 = () =>
