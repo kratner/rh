@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from "react";
-import GlobeComponent from "./components/Globe";
 import ChartHeading from "./components/ChartHeading";
 import BarChart from "./components/d3/BarChart";
-import RadarScreen from "./components/webgl/RadarScreen";
 import ColumnChart from "./components/d3/ColumnChart";
 import HeadContent from "./components/HeadContent";
 import Dashboard from "./components/Dashboard";
 import { getRandomCoordinate } from "./utils/utils";
 import "./styles/index.scss";
 
-// const globeComponentData = [
-//   { lat: 40.7117244, lng: -74.0707383, label: "New York" },
-//   { lat: 51.5074, lng: -0.1278, label: "London" },
-//   { lat: -33.865143, lng: 151.2099, label: "Sydney" },
-// ];
-
-const globeImageURLs = [
-  "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
-  "//unpkg.com/three-globe/example/img/earth-night.jpg",
-];
-
-// const CVE_API_URL_STEM = "https://services.nvd.nist.gov/rest/json/cves/2.0";
-
-// const EPSS_API_URL_STEM = "https://api.first.org/data/v1/epss";
 const App = () => {
   const [epss_data, setEPSSData] = useState(null);
   const [top25_epss_data, setTop25EPSSData] = useState(null);
@@ -142,6 +126,13 @@ const App = () => {
       </div>
     );
 
+  const navigationLinks = [
+    { label: "Home" /* url: "/" */ },
+    { label: "Dashboard" /* url: "/dashboard" */ },
+    { label: "Information" /* url: "/information" */ },
+    { label: "Contact" /* url: "/contact" */ },
+  ];
+
   const footerText = `\u00A9 ${new Date().getFullYear()} RiskHorizon. All rights reserved.`;
   return (
     <div>
@@ -150,44 +141,14 @@ const App = () => {
         description="Risk Horizon"
         keywords="cve, epss, vulnerabilities"
       />
-      {/* <HomePage
-        subtitle="Exploit Prediction Scoring System (EPSS)"
-        // subtitle="https://www.first.org"
-        // buttonText="Contact Us"
-        contentBlocks={contentBlocks}
-        contentContainerClassName="content-block-container"
-        // footerText="5/15/2023"
-      /> */}
 
-      <Dashboard footerText={footerText}>
+      <Dashboard footerText={footerText} navigation={navigationLinks}>
         <Panel1 />
         <Panel2 />
         <Panel3 />
         <Panel4 />
         <Panel5 />
       </Dashboard>
-      {/* <Spheres data={epss_data} /> */}
-
-      {/* <h3>National Institute of Standards and Technology (NIST)</h3>
-      <h4>National Vulnerabilities Database</h4>
-      <h4>https://nvd.nist.gov</h4>
-      <DataFetcher
-        // urlStem={CVE_API_URL_STEM}
-        // parameters={{ resultsPerPage: "20", startIndex: "0" }}
-        // parameters={{ envelope: true, pretty: true, offset: 0 }}
-        localFile={process.env.PUBLIC_URL + "/data/cve_data.json"}
-        onDataLoaded={handleCVEDataLoaded}
-      />
-      {CVEBulletedList} */}
-      {/* <Spheres data={epss_data} />
-      <BarChart data={epss_data} /> */}
-      {/* <h3>Exploit Prediction Scoring System (EPSS)</h3>
-      <h4>https://www.first.org</h4> */}
-      {/* <DataFetcher
-        localFile={process.env.PUBLIC_URL + "/data/epss_data.json"}
-        onDataLoaded={handleEPSSDataLoaded}
-      /> */}
-      {/* {EPSSBulletedList} */}
     </div>
   );
 };
