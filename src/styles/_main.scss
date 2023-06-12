@@ -16,3 +16,70 @@ code {
 .navigation ul {
   list-style: none;
 }
+
+/* Page/Site Header */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: $header_background;
+
+  .logo {
+    width: 18em;
+  }
+
+  .navigation {
+    ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0;
+
+      li {
+        margin-left: 1rem;
+
+        a {
+          text-decoration: none;
+          color: $text_color;
+          &:hover {
+            color: $link_hover_color;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: $footer_background;
+  color: $text_color;
+
+  .footer-links {
+    ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0;
+
+      li {
+        margin-left: 1rem;
+
+        a {
+          text-decoration: none;
+          color: $text_color;
+          &:hover {
+            color: $link_hover_color;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ChartHeadingProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   containerClassName?: string;
   titleClassName?: string;
   subtitleClassName?: string;
